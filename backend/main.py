@@ -36,7 +36,7 @@ def magic_generate(request: MagicRequest):
                     "content": [
                         {
                             "type": "text",
-                            "text": f"Describe this sketch in less than 30 words. It's a rough drawing of something that falls into this category: {request.category}. Focus on what you see, not that it's a sketch. Be concise and specific about key features."
+                            "text": f"Describe this sketch in less than 30 words. It's a rough drawing of something that falls into this category: {request.category}. Describe it in a way that makes sense to Dall-E 3. Focus on what you see, not that it's a sketch. Be concise and specific about key features."
                         },
                         {
                             "type": "image_url",

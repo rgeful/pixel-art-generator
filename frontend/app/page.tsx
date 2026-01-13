@@ -49,19 +49,20 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-neutral-900 text-white flex flex-col items-center py-10">
-      <h1 className="text-6xl mb-6">Pixel Art Generator</h1>
+    <main className="min-h-screen bg-neutral-800 text-white flex flex-col items-center py-10">
+      <h1 className="text-6xl mb-6" style={{ textShadow: '4px 4px 0px rgba(0, 0, 0, 0.8)' }}>Pixel Art Generator</h1>
 
       <div className="flex gap-4 mb-6">
         {CATEGORIES.map((cat) => (
           <button
             key={cat}
             onClick={() => setCategory(cat)}
-            className={`px-4 py-2 rounded-full transition ${
+            className={`px-4 py-2 rounded-full transition hover:scale-110 ${
               category === cat
-                ? "bg-neutral-600 text-white"
-                : "bg-neutral-800 text-neutral-400 hover:bg-neutral-700"
+                ? "bg-green-500 text-white scale-110"
+                : "bg-neutral-600 text-neutral-200 hover:bg-neutral-700"
             }`}
+            style={{ boxShadow: '3px 3px 0px rgba(0, 0, 0, 0.8)' }}
           >
             {cat}
           </button>
@@ -70,7 +71,7 @@ export default function Home() {
 
       <div className="flex gap-8 items-start flex-wrap justify-center">
         <div className="flex flex-col items-center gap-4">
-          <div className="border-4 rounded-lg overflow-hidden shadow-2xl">
+          <div className="border-4 rounded-lg overflow-hidden" style={{ boxShadow: '8px 8px 0px rgba(0, 0, 0, 0.8)' }}>
             <ReactSketchCanvas
               ref={canvasRef}
               style={{ width: "600px", height: "600px" }}
@@ -82,6 +83,7 @@ export default function Home() {
             <button
               onClick={clearCanvas}
               className="px-6 py-2 bg-neutral-700 rounded-lg hover:bg-neutral-600"
+              style={{ boxShadow: '4px 4px 0px rgba(0, 0, 0, 0.8)' }}
             >
               Clear
             </button>
@@ -89,6 +91,7 @@ export default function Home() {
               onClick={handleSubmit}
               disabled={loading}
               className="px-8 py-2 bg-green-500 text-black rounded-lg hover:bg-green-400 disabled:opacity-50"
+              style={{ boxShadow: '4px 4px 0px rgba(0, 0, 0, 0.8)' }}
             >
               {loading ? "Generating..." : "Generate"}
             </button>
@@ -96,13 +99,13 @@ export default function Home() {
         </div>
 
         {(result || loading) && (
-          <div className="w-[600px] h-[600px] flex items-center justify-center bg-neutral-800 rounded-lg border border-neutral-700 p-4">
+          <div className="w-150 h-150 flex items-center justify-center bg-neutral-800 rounded-lg border border-neutral-700 p-4" style={{ boxShadow: '8px 8px 0px rgba(0, 0, 0, 0.8)' }}>
             {loading ? (
               <div className="animate-pulse text-2xl text-neutral-400">Generating...</div>
             ) : (
               <div className="text-center flex flex-col items-center gap-2">
                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={result!} alt="Pixel Art" className="rounded-lg shadow-lg max-w-full max-h-[550px] object-contain" style={{imageRendering: 'pixelated'}} />
+                <img src={result!} alt="Pixel Art" className="rounded-lg max-w-full max-h-137.5 object-contain" style={{imageRendering: 'pixelated', boxShadow: '6px 6px 0px rgba(0, 0, 0, 0.6)'}} />
                 <p className="text-xl text-neutral-300">AI saw: &quot;{detected}&quot;</p>
               </div>
             )}
