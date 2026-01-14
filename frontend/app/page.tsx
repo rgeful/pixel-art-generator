@@ -17,7 +17,6 @@ export default function Home() {
   const [category, setCategory] = useState("Character");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<string | null>(null);
-  const [detected, setDetected] = useState<string | null>(null);
 
   const handleSubmit = async () => {
     if (!canvasRef.current) return;
@@ -33,7 +32,6 @@ export default function Home() {
       });
 
       setResult(response.data.result_url);
-      setDetected(response.data.detected_as);
     } catch (error) {
       console.error("Error generating:", error);
       alert("Something went wrong. Check the console.");
@@ -45,7 +43,6 @@ export default function Home() {
   const clearCanvas = () => {
     canvasRef.current?.clearCanvas();
     setResult(null);
-    setDetected(null);
   };
 
   return (
@@ -99,14 +96,13 @@ export default function Home() {
         </div>
 
         {(result || loading) && (
-          <div className="w-150 h-150 flex items-center justify-center bg-neutral-800 rounded-lg border border-neutral-700 p-4" style={{ boxShadow: '8px 8px 0px rgba(0, 0, 0, 0.8)' }}>
+          <div className="w-150 h-150 flex items-center justify-center bg-neutral-800 rounded-lg border-4 border-neutral-700 p-6" style={{ boxShadow: '8px 8px 0px rgba(0, 0, 0, 0.8)' }}>
             {loading ? (
               <div className="animate-pulse text-2xl text-neutral-400">Generating...</div>
             ) : (
-              <div className="text-center flex flex-col items-center gap-2">
+              <div className="text-center flex items-center justify-center w-full h-full">
                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={result!} alt="Pixel Art" className="rounded-lg max-w-full max-h-137.5 object-contain" style={{imageRendering: 'pixelated', boxShadow: '6px 6px 0px rgba(0, 0, 0, 0.6)'}} />
-                <p className="text-xl text-neutral-300">AI saw: &quot;{detected}&quot;</p>
+                <img src={result!} alt="Pixel Art" className="rounded-lg object-contain max-w-full max-h-full" style={{imageRendering: 'pixelated', boxShadow: '6px 6px 0px rgba(0, 0, 0, 0.6)'}} />
               </div>
             )}
           </div>

@@ -1,4 +1,6 @@
 fastapi
 uvicorn
 python-dotenv
-openai
+google-generativeai
+google-cloud-aiplatform
+Pillow
